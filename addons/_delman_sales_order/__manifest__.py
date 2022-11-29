@@ -19,6 +19,7 @@
     'demo': [],
     'data': [
         'views/sale_order.xml',
+        'views/account_move.xml',
     ],
     'installable': True,
     'application': True,

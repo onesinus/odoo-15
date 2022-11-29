@@ -45,10 +45,16 @@ class AccountMove(models.Model):
         return res
 
     def action_post(self):
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         result = super(AccountMove, self).action_post()
         for inv in self:
             context = dict(self.env.context)
             context.pop('default_type', None)
+            print(inv)
+            print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            print(inv.invoice_line_ids)
+
+
             for mv_line in inv.invoice_line_ids.filtered(lambda line: line.move_id.move_type in ('in_invoice','out_invoice')):
                 mv_line.with_context(context).asset_create()
         return result
